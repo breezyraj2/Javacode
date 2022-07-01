@@ -53,7 +53,7 @@ pipeline {
       steps {
         rtServer (
                     id: "Jfrog_Server",
-                    url: "http://ec2-3-111-246-78.ap-south-1.compute.amazonaws.com:8082/artifactory",
+                    url: "http://ec2-3-111-42-207.ap-south-1.compute.amazonaws.com:8082/artifactory",
                     credentialsId: "jfrog_server"
                 )
 	    rtMavenDeployer (
@@ -94,7 +94,7 @@ pipeline {
       steps {
         sh 'docker build -t pipeline_demo .'
 		sh 'docker run --rm --name Demo pipeline_demo'	
-        sh 'docker tag openjdk 3.111.246.78:8082/docker-quickstart-local/pipeline_demo:latest'
+        sh 'docker tag openjdk 3.111.42.2078082/docker-quickstart-local/pipeline_demo:latest'
       }
     }
 		
@@ -102,7 +102,7 @@ pipeline {
             steps {
 			    rtDockerPush(
                 serverId: "Jfrog_Server",
-                image: "3.111.246.78:8082/docker-quickstart-local/pipeline_demo:latest",
+                image: "3.111.42.207:8082/docker-quickstart-local/pipeline_demo:latest",
                 targetRepo: 'docker-quickstart-local',
                 // Attach custom properties to the published artifacts:
                 properties: 'project-name=java11;status=stable'
